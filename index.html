@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="Черкаський державний технологічний університет — офіційний сайт">
+    <title>ЧДТУ — Черкаський Держ. Технологічний Університет</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+
+    <!-- ─── HEADER ─────────────────────────────────────────── -->
+    <header class="header glass" id="header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <div class="logo-emblem">
+                    <img src="logo1.png" alt="Герб ЧДТУ" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="logo-fallback">🎓</div>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-abbr">ЧДТУ</span>
+                    <span class="logo-full">Черкаський держ. технологічний університет</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Clock -->
+                <div class="clock-widget glass-soft">
+                    <span class="clock-time" id="clockTime">00:00:00</span>
+                    <span class="clock-date" id="clockDate">—</span>
+                </div>
+
+                <!-- Theme toggle -->
+                <button class="theme-btn glass-soft" id="themeToggle" aria-label="Перемкнути тему" title="Перемкнути тему">
+                    <span class="theme-icon" id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ─── HERO ───────────────────────────────────────────── -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge glass-soft">
+                <span>🏛️</span>
+                <span>Засновано у 1960 році</span>
+            </div>
+            <h1 class="hero-title">
+                Черкаський<br>
+                <span class="hero-accent">Державний</span><br>
+                Технологічний<br>Університет
+            </h1>
+            <p class="hero-sub">CONSTANTIA EVOLUTIONIS — Постійність та розвиток</p>
+            <div class="hero-actions">
+                <a href="#about" class="btn btn-primary">
+                    <span>📚</span> Вступнику
+                </a>
+                <a href="https://chdtu.edu.ua" target="_blank" class="btn btn-glass">
+                    <span>🌐</span> Офіційний сайт
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat glass-soft">
+                    <span class="stat-num">10 000+</span>
+                    <span class="stat-lbl">Студентів</span>
+                </div>
+                <div class="stat glass-soft">
+                    <span class="stat-num">5</span>
+                    <span class="stat-lbl">Факультетів</span>
+                </div>
+                <div class="stat glass-soft">
+                    <span class="stat-num">64</span>
+                    <span class="stat-lbl">Роки досвіду</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-emblem">
+            <img src="logo2.png" alt="Герб ЧДТУ" class="hero-emblem-img" onerror="this.style.display='none'">
+        </div>
+    </section>
+
+    <!-- ─── QUICK LINKS ────────────────────────────────────── -->
+    <section class="quick-links section">
+        <div class="container">
+            <h2 class="section-title">⚡ Швидкий доступ</h2>
+            <div class="quick-grid">
+                <a href="https://t1p.de/b6g3n" target="_blank" class="quick-card glass">
+                    <span class="quick-icon">📅</span>
+                    <span class="quick-label">Розклад</span>
+                    <span class="quick-arrow">→</span>
+                </a>
+                <a href="https://bit.ly/3MTKUrn" target="_blank" class="quick-card glass">
+                    <span class="quick-icon">📊</span>
+                    <span class="quick-label">Студент ЧДТУ+</span>
+                    <span class="quick-arrow">→</span>
+                </a>
+                <a href="https://t.me/cstu_chat" target="_blank" class="quick-card glass">
+                    <span class="quick-icon">💬</span>
+                    <span class="quick-label">Основний чат</span>
+                    <span class="quick-arrow">→</span>
+                </a>
+                <a href="https://t.me/chdtu" target="_blank" class="quick-card glass">
+                    <span class="quick-icon">📢</span>
+                    <span class="quick-label">Новини ЧДТУ</span>
+                    <span class="quick-arrow">→</span>
+                </a>
+                <a href="https://t.me/stud_rada_cstu" target="_blank" class="quick-card glass">
+                    <span class="quick-icon">🎓</span>
+                    <span class="quick-label">Студрада</span>
+                    <span class="quick-arrow">→</span>
+                </a>
+                <a href="#map" class="quick-card glass">
+                    <span class="quick-icon">📍</span>
+                    <span class="quick-label">Де знайти нас</span>
+                    <span class="quick-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ABOUT ──────────────────────────────────────────── -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="section-eyebrow">🏛️ Про університет</div>
+                    <h2 class="section-title left">Якість освіти —<br>наш пріоритет</h2>
+                    <p class="about-desc">ЧДТУ — провідний технічний університет України, заснований у 1960 році. Сьогодні університет є сучасним освітньо-науковим центром, що готує фахівців за найактуальнішими спеціальностями.</p>
+                    <div class="about-pills">
+                        <span class="pill glass-soft">🔬 Наукові дослідження</span>
+                        <span class="pill glass-soft">🤝 Міжнародне партнерство</span>
+                        <span class="pill glass-soft">💼 Практичне навчання</span>
+                        <span class="pill glass-soft">🏆 Якісна освіта</span>
+                    </div>
+                    <a href="https://chdtu.edu.ua" target="_blank" class="btn btn-primary">
+                        Дізнатися більше →
+                    </a>
+                </div>
+                <div class="about-cards">
+                    <div class="info-card glass">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <strong>Адреса</strong>
+                            <p>вул. Шевченка, 460<br>м. Черкаси, Україна</p>
+                        </div>
+                    </div>
+                    <div class="info-card glass">
+                        <span class="info-icon">⏰</span>
+                        <div>
+                            <strong>Режим роботи</strong>
+                            <p>Пн–Пт: 8:00–17:00<br>Сб–Нд: вихідний</p>
+                        </div>
+                    </div>
+                    <div class="info-card glass">
+                        <span class="info-icon">📞</span>
+                        <div>
+                            <strong>Телефон</strong>
+                            <p>+38 (0472) 71-22-84</p>
+                        </div>
+                    </div>
+                    <div class="info-card glass">
+                        <span class="info-icon">✉️</span>
+                        <div>
+                            <strong>Email</strong>
+                            <p>chdtu@chdtu.edu.ua</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FACULTIES ──────────────────────────────────────── -->
+    <section class="faculties section" id="faculties">
+        <div class="container">
+            <div class="section-eyebrow">🎓 Навчання</div>
+            <h2 class="section-title">Факультети</h2>
+            <div class="faculty-grid">
+                <div class="faculty-card glass" data-color="blue">
+                    <div class="faculty-header">
+                        <span class="faculty-icon">💻</span>
+                        <span class="faculty-code">ФІТІС</span>
+                    </div>
+                    <h3>Інформаційних технологій та інформаційної безпеки</h3>
+                    <p>IT, кібербезпека, програмування, штучний інтелект</p>
+                    <div class="faculty-tags">
+                        <span class="tag">🖥️ IT</span>
+                        <span class="tag">🔐 Кібербезпека</span>
+                    </div>
+                </div>
+                <div class="faculty-card glass" data-color="green">
+                    <div class="faculty-header">
+                        <span class="faculty-icon">🏗️</span>
+                        <span class="faculty-code">ФГТ</span>
+                    </div>
+                    <h3>Харчових та готельних технологій</h3>
+                    <p>Харчова промисловість, готельна справа, туризм</p>
+                    <div class="faculty-tags">
+                        <span class="tag">🍽️ Харчові технології</span>
+                        <span class="tag">🏨 Готельна справа</span>
+                    </div>
+                </div>
+                <div class="faculty-card glass" data-color="orange">
+                    <div class="faculty-header">
+                        <span class="faculty-icon">⚙️</span>
+                        <span class="faculty-code">ФЕТАМ</span>
+                    </div>
+                    <h3>Електроенергетики, технологій та автоматизації машинобудування</h3>
+                    <p>Електроенергетика, автоматизація, машинобудування</p>
+                    <div class="faculty-tags">
+                        <span class="tag">⚡ Енергетика</span>
+                        <span class="tag">🤖 Автоматизація</span>
+                    </div>
+                </div>
+                <div class="faculty-card glass" data-color="purple">
+                    <div class="faculty-header">
+                        <span class="faculty-icon">💰</span>
+                        <span class="faculty-code">ФЕУ</span>
+                    </div>
+                    <h3>Економіки і управління</h3>
+                    <p>Економіка, менеджмент, бізнес-адміністрування</p>
+                    <div class="faculty-tags">
+                        <span class="tag">📈 Економіка</span>
+                        <span class="tag">🎯 Менеджмент</span>
+                    </div>
+                </div>
+                <div class="faculty-card glass" data-color="teal">
+                    <div class="faculty-header">
+                        <span class="faculty-icon">🌿</span>
+                        <span class="faculty-code">ФТБРП</span>
+                    </div>
+                    <h3>Технологій біопереробки та раціонального природокористування</h3>
+                    <p>Екологія, біотехнології, природокористування</p>
+                    <div class="faculty-tags">
+                        <span class="tag">♻️ Екологія</span>
+                        <span class="tag">🧬 Біотехнології</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SCHEDULE ───────────────────────────────────────── -->
+    <section class="schedule section" id="schedule">
+        <div class="container">
+            <div class="section-eyebrow">📅 Навчання</div>
+            <h2 class="section-title">Розклад та ресурси</h2>
+            <div class="schedule-grid">
+                <a href="https://t1p.de/b6g3n" target="_blank" class="sched-card glass big-card">
+                    <div class="sched-icon">📅</div>
+                    <div class="sched-content">
+                        <h3>Розклад занять</h3>
+                        <p>Актуальний розклад для всіх факультетів</p>
+                    </div>
+                    <span class="sched-arrow">↗</span>
+                </a>
+                <a href="https://bit.ly/3MTKUrn" target="_blank" class="sched-card glass big-card">
+                    <div class="sched-icon">📊</div>
+                    <div class="sched-content">
+                        <h3>Студент ЧДТУ+</h3>
+                        <p>Успішність, оцінки, особистий кабінет</p>
+                    </div>
+                    <span class="sched-arrow">↗</span>
+                </a>
+                <a href="https://chdtu.edu.ua" target="_blank" class="sched-card glass">
+                    <div class="sched-icon">🌐</div>
+                    <div class="sched-content">
+                        <h3>Офіційний сайт</h3>
+                        <p>chdtu.edu.ua</p>
+                    </div>
+                    <span class="sched-arrow">↗</span>
+                </a>
+                <div class="sched-card glass no-link">
+                    <div class="sched-icon">📐</div>
+                    <div class="sched-content">
+                        <h3>ЄКТС — Оцінювання</h3>
+                        <p>А(90-100) · B(82-89) · C(74-81)<br>D(64-73) · E(60-63) · F(&lt;60)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── COMMUNITY ──────────────────────────────────────── -->
+    <section class="community section" id="community">
+        <div class="container">
+            <div class="section-eyebrow">🤝 Студентство</div>
+            <h2 class="section-title">Спільноти ЧДТУ</h2>
+            <div class="community-grid">
+                <a href="https://t.me/cstu_chat" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">💬</span>
+                    <div class="comm-info">
+                        <strong>Основний чат</strong>
+                        <span>Telegram</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+                <a href="https://t.me/chdtu" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">📢</span>
+                    <div class="comm-info">
+                        <strong>Новини ЧДТУ</strong>
+                        <span>Telegram</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+                <a href="https://t.me/stud_rada_cstu" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">🎓</span>
+                    <div class="comm-info">
+                        <strong>Студентська рада</strong>
+                        <span>Telegram</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+                <a href="https://instagram.com/stud_rada_chstu" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">📸</span>
+                    <div class="comm-info">
+                        <strong>Студрада</strong>
+                        <span>Instagram</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+                <a href="https://discord.gg/qVkHKuzTH" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">🎮</span>
+                    <div class="comm-info">
+                        <strong>CSTU Esports</strong>
+                        <span>Discord</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+                <a href="https://t.me/cstu_anime" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">🌸</span>
+                    <div class="comm-info">
+                        <strong>Аніме спільнота</strong>
+                        <span>Telegram</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+                <a href="https://t.me/+XQiOPwHlbFM2ODgy" target="_blank" class="comm-card glass">
+                    <span class="comm-icon">🕹️</span>
+                    <div class="comm-info">
+                        <strong>Ігровий чат</strong>
+                        <span>Telegram</span>
+                    </div>
+                    <span class="comm-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BUILDINGS ──────────────────────────────────────── -->
+    <section class="buildings section" id="map">
+        <div class="container">
+            <div class="section-eyebrow">📍 Кампус</div>
+            <h2 class="section-title">Корпуси та гуртожитки</h2>
+            <div class="buildings-grid">
+                <div class="building-card glass">
+                    <span class="building-icon">🏛️</span>
+                    <div class="building-info">
+                        <strong>1-й корпус (Головний)</strong>
+                        <span>вул. Шевченка, 460</span>
+                    </div>
+                </div>
+                <div class="building-card glass">
+                    <span class="building-icon">🏢</span>
+                    <div class="building-info">
+                        <strong>2-й корпус</strong>
+                        <span>бул. Шевченка, 460/2</span>
+                    </div>
+                </div>
+                <div class="building-card glass">
+                    <span class="building-icon">🔬</span>
+                    <div class="building-info">
+                        <strong>Науково-технічна бібліотека</strong>
+                        <span>вул. Шевченка, 460</span>
+                    </div>
+                </div>
+                <div class="building-card glass">
+                    <span class="building-icon">🏠</span>
+                    <div class="building-info">
+                        <strong>Гуртожиток №1</strong>
+                        <span>вул. Інформаційна, 2</span>
+                    </div>
+                </div>
+                <div class="building-card glass">
+                    <span class="building-icon">🏠</span>
+                    <div class="building-info">
+                        <strong>Гуртожиток №2</strong>
+                        <span>вул. Інформаційна, 4</span>
+                    </div>
+                </div>
+                <div class="building-card glass">
+                    <span class="building-icon">🏠</span>
+                    <div class="building-info">
+                        <strong>Гуртожиток №3</strong>
+                        <span>вул. Благовісна, 147</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─────────────────────────────────────────── -->
+    <footer class="footer glass" id="contacts">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="logo1.png" alt="ЧДТУ" class="footer-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="logo-fallback small">🎓</div>
+                    </div>
+                    <div>
+                        <div class="footer-name">ЧДТУ</div>
+                        <div class="footer-sub">Черкаський державний технологічний університет</div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>🔗 Посилання</h4>
+                    <a href="https://chdtu.edu.ua" target="_blank">🌐 Офіційний сайт</a>
+                    <a href="https://t1p.de/b6g3n" target="_blank">📅 Розклад</a>
+                    <a href="https://bit.ly/3MTKUrn" target="_blank">📊 Студент ЧДТУ+</a>
+                </div>
+                <div class="footer-links">
+                    <h4>📱 Соцмережі</h4>
+                    <a href="https://t.me/chdtu" target="_blank">✈️ Telegram</a>
+                    <a href="https://instagram.com/stud_rada_chstu" target="_blank">📸 Instagram</a>
+                    <a href="https://discord.gg/qVkHKuzTH" target="_blank">🎮 Discord</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>📞 Контакти</h4>
+                    <p>📍 вул. Шевченка, 460<br>м. Черкаси, 18006</p>
+                    <p>📞 +38 (0472) 71-22-84</p>
+                    <p>✉️ chdtu@chdtu.edu.ua</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2024 ЧДТУ · CONSTANTIA EVOLUTIONIS</span>
+                <span class="footer-badge glass-soft">🎓 З 1960 року</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── BOTTOM NAV (Telegram style) ───────────────────── -->
+    <nav class="bottom-nav glass" id="bottomNav">
+        <a href="#home" class="nav-item active" data-section="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Головна</span>
+        </a>
+        <a href="#faculties" class="nav-item" data-section="faculties">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-label">Факультети</span>
+        </a>
+        <a href="#schedule" class="nav-item" data-section="schedule">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">Розклад</span>
+        </a>
+        <a href="#community" class="nav-item" data-section="community">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">Спільноти</span>
+        </a>
+        <a href="#contacts" class="nav-item" data-section="contacts">
+            <span class="nav-icon">📍</span>
+            <span class="nav-label">Контакти</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
