@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "title": "ЧДТУ",
+    "fullTitle": "Черкаський державний технологічний університет",
+    "shortTitle": "Черкаський держ. технологічний університет",
+    "slogan": "CONSTANTIA EVOLUTIONIS",
+    "founded": 1960,
+    "version": "4.0.0",
+    "contacts": {
+      "address": "вул. Шевченка, 460, м. Черкаси, 18006",
+      "phone": "+38 (0472) 71-22-84",
+      "email": "chdtu@chdtu.edu.ua",
+      "website": "https://chdtu.edu.ua",
+      "hours": "Пн–Пт: 8:00–17:00"
+    }
+  },
+
+  "nav": [
+    { "id": "home",       "label": "Головна",      "icon": "🏠", "color": "ib",  "drawerOnly": false },
+    { "id": "schedule",   "label": "Розклад",      "icon": "📅", "color": "it",  "drawerOnly": false },
+    { "id": "faculties",  "label": "Факультети",   "icon": "🎓", "color": "ipu", "drawerOnly": false },
+    { "id": "community",  "label": "Спільноти",    "icon": "💬", "color": "ig",  "drawerOnly": false },
+    { "id": "useful",     "label": "Корисне",      "icon": "🛠️", "color": "io",  "drawerOnly": false },
+    { "id": "transport",  "label": "Транспорт",    "icon": "🚌", "color": "im",  "drawerOnly": true  },
+    { "id": "admin",      "label": "Адміністративне", "icon": "📋", "color": "igr","drawerOnly": true  }
+  ],
+
+  "stats": [
+    { "value": "10K+", "label": "Студентів"   },
+    { "value": "5",    "label": "Факультетів" },
+    { "value": "64",   "label": "Роки"        }
+  ],
+
+  "quick": [
+    { "icon": "📜", "label": "Офіційний розклад",  "url": "https://t1p.de/b6g3n"              },
+    { "icon": "🤖", "label": "Розклад-бот ЧДУ",    "url": "https://t.me/cdu_rozklad_bot"      },
+    { "icon": "🕗", "label": "Розклад-бот ЧДТУ",   "url": "https://t.me/rozklad_bot"          },
+    { "icon": "💎", "label": "Студент ЧДТУ+",       "url": "https://bit.ly/3MTKUrn"            },
+    { "icon": "💬", "label": "Головний чат",        "url": "https://t.me/cstu_chat"            },
+    { "icon": "🏆", "label": "Рейтинг студентів",   "url": "https://bit.ly/308gfku"            }
+  ],
+
+  "pages": {
+
+    "home": {
+      "title": "Головна",
+      "hero": true,
+      "sections": [
+        {
+          "id": "contacts-home",
+          "label": "Контакти університету",
+          "rows": [
+            { "icon": "📍", "color": "ib",  "title": "Адреса",         "sub": "вул. Шевченка, 460, м. Черкаси",  "static": true },
+            { "icon": "📞", "color": "ig",  "title": "Телефон",        "sub": "+38 (0472) 71-22-84",             "static": true },
+            { "icon": "✉️", "color": "it",  "title": "Email",          "sub": "chdtu@chdtu.edu.ua",              "static": true },
+            { "icon": "⏰", "color": "io",  "title": "Робочі години",  "sub": "Пн–Пт: 8:00–17:00",              "static": true }
+          ]
+        }
+      ]
+    },
+
+    "schedule": {
+      "title": "📅 Розклад",
+      "sections": [
+        {
+          "id": "view-schedule",
+          "label": "Переглянути розклад",
+          "rows": [
+            { "icon": "📜", "color": "ib",  "title": "Офіційний сайт-розклад",  "sub": "chdtu.edu.ua",                     "url": "https://t1p.de/b6g3n"              },
+            { "icon": "🤖", "color": "iin", "title": "Розклад-бот ЧДУ",          "sub": "@cdu_rozklad_bot · Telegram",      "url": "https://t.me/cdu_rozklad_bot"      },
+            { "icon": "🕗", "color": "ipu", "title": "Розклад-бот ЧДТУ",         "sub": "@rozklad_bot · Telegram",          "url": "https://t.me/rozklad_bot"          },
+            { "icon": "🚀", "color": "io",  "title": "Неофіційний розклад",      "sub": "Альтернативний сайт",              "url": "https://t1p.de/0i7vi"              }
+          ]
+        },
+        {
+          "id": "grades",
+          "label": "Оцінки та успішність",
+          "rows": [
+            { "icon": "💎", "color": "ig",  "title": "Студент ЧДТУ+",         "sub": "Оцінки, залікова книжка",   "url": "https://bit.ly/3MTKUrn"  },
+            { "icon": "🏆", "color": "iyl", "title": "Рейтинг студентів",     "sub": "Всі факультети",            "url": "https://bit.ly/308gfku"  },
+            { "icon": "🔊", "color": "it",  "title": "Розклад дзвінків",      "sub": "Час пар",                   "url": "https://bit.ly/3cuMU8K"  },
+            { "icon": "✌️", "color": "ipu", "title": "Вибіркові предмети",    "sub": "Для 2-го курсу",            "url": "https://bit.ly/3xHsFl6"  }
+          ]
+        },
+        {
+          "id": "apps-android",
+          "label": "📱 Застосунки — Android",
+          "rows": [
+            { "icon": "🔮", "color": "ig",  "title": "Розклад ЧДТУ #1", "sub": "🟢 Android", "url": "https://bit.ly/3uWtxQO", "dl": true },
+            { "icon": "📗", "color": "im",  "title": "Розклад ЧДТУ #2", "sub": "🟢 Android", "url": "https://bit.ly/3xGftg5", "dl": true }
+          ]
+        },
+        {
+          "id": "apps-ios",
+          "label": "🍎 Застосунки — iOS",
+          "rows": [
+            { "icon": "🍎", "color": "ibk", "title": "Розклад ЧДТУ", "sub": "App Store", "url": "https://apple.co/3CYsCCm", "dl": true }
+          ]
+        },
+        {
+          "id": "ects",
+          "label": "🎓 ЄКТС — Шкала оцінювання",
+          "type": "ects"
+        }
+      ],
+      "notes": [
+        "⚡ У застосунку вкажіть університет, назву групи або ПІБ викладача та потрібні дати.",
+        "📊 Рейтинговий бал: Середній бал (СБ) × 0.9"
+      ]
+    },
+
+    "faculties": {
+      "title": "🎓 Факультети",
+      "sections": [
+        {
+          "id": "leadership",
+          "label": "Керівництво",
+          "rows": [
+            { "icon": "🔮", "color": "ipu", "title": "Голова студентської ради", "sub": "@OlyaBasarab · Telegram", "url": "https://t.me/OlyaBasarab" }
+          ]
+        },
+        {
+          "id": "faculties-list",
+          "label": "Факультети — натисни для входу в чат",
+          "note": "💬 Натисни на факультет щоб написати куратору й отримати посилання на чат свого факультету.",
+          "rows": [
+            { "icon": "💻", "color": "ib",  "title": "ФІТІС", "sub": "Інф. технологій та інф. безпеки · IT, кібербезпека, програмування", "url": "https://t.me/theuniverseisintheheart" },
+            { "icon": "🏗️", "color": "ig",  "title": "ФГТ",   "sub": "Гуманітарних технологій · Харчова промисловість, готельна справа",  "url": "https://t.me/Brochetos"               },
+            { "icon": "💰", "color": "iyl", "title": "ФЕУ",   "sub": "Економіки та управління · Бізнес, менеджмент, фінанси",             "url": "https://t.me/artofan_lat"             },
+            { "icon": "⚙️", "color": "io",  "title": "ФЕТАМ", "sub": "Електронних технологій, авто та машинобудування",                   "url": "https://t.me/elvinaaa_aa"             },
+            { "icon": "🌿", "color": "im",  "title": "ФТБРП", "sub": "Технологій, будівництва та природокористування",                    "url": "https://t.me/NK3105nk"                }
+          ]
+        },
+        {
+          "id": "university-info",
+          "label": "Університет",
+          "rows": [
+            { "icon": "🌐", "color": "ib",  "title": "Офіційний сайт ЧДТУ",  "sub": "chdtu.edu.ua",                      "url": "https://chdtu.edu.ua"    },
+            { "icon": "📍", "color": "igr", "title": "Адреса",               "sub": "вул. Шевченка, 460, м. Черкаси",    "static": true                   },
+            { "icon": "📞", "color": "igr", "title": "Телефон",              "sub": "+38 (0472) 71-22-84",               "static": true                   },
+            { "icon": "⏰", "color": "igr", "title": "Режим роботи",         "sub": "Пн–Пт: 8:00–17:00",                "static": true                   }
+          ]
+        }
+      ]
+    },
+
+    "community": {
+      "title": "💬 Спільноти",
+      "sections": [
+        {
+          "id": "telegram",
+          "label": "✈️ Telegram",
+          "rows": [
+            { "icon": "💙", "color": "ib",  "title": "Головний чат ЧДТУ",          "sub": "@cstu_chat",                              "url": "https://t.me/cstu_chat"      },
+            { "icon": "📢", "color": "ib",  "title": "Новини ЧДТУ",                "sub": "@chdtu — актуальна інформація",            "url": "https://t.me/chdtu"          },
+            { "icon": "⭐", "color": "iyl", "title": "Студентська рада",           "sub": "@stud_rada_cstu",                          "url": "https://t.me/stud_rada_cstu" },
+            { "icon": "📝", "color": "it",  "title": "Запропонувати новину",       "sub": "@cstu_bot — бот ЧДТУ",                    "url": "https://t.me/cstu_bot"       },
+            { "icon": "💬", "color": "igr", "title": "Чат-флуд ЧДТУ",             "sub": "Неформальне спілкування",                  "url": "https://bit.ly/3EtwBXM"     },
+            { "icon": "🌸", "color": "ipk", "title": "Аніме-чат ЧДТУ",            "sub": "Для любителів аніме",                      "url": "https://bit.ly/3uWV04U"     }
+          ]
+        },
+        {
+          "id": "instagram",
+          "label": "📸 Instagram",
+          "rows": [
+            { "icon": "📸", "color": "ipk", "title": "Студентська рада",       "sub": "@stud_rada_chstu",    "url": "https://instagram.com/stud_rada_chstu"  },
+            { "icon": "🎓", "color": "ipk", "title": "Офіційна сторінка ЧДТУ", "sub": "@chstu_official",     "url": "https://instagram.com/chstu_official"   }
+          ]
+        },
+        {
+          "id": "facebook",
+          "label": "⚡ Facebook",
+          "rows": [
+            { "icon": "⚡", "color": "ib", "title": "ЧДТУ",                  "sub": "Офіційна Facebook-сторінка", "url": "https://www.facebook.com/chdtu.edu.ua" },
+            { "icon": "🔵", "color": "ib", "title": "Студентська рада ЧДТУ", "sub": "Facebook",                   "url": "https://bit.ly/3W0aO2v"               }
+          ]
+        },
+        {
+          "id": "media",
+          "label": "🎮 YouTube · Twitch · Discord",
+          "rows": [
+            { "icon": "▶️", "color": "ir",  "title": "ЧДТУ YouTube",          "sub": "Офіційний канал університету", "url": "https://bit.ly/2EE8hrW"             },
+            { "icon": "🔔", "color": "ir",  "title": "StudRada CSTU YouTube", "sub": "Канал студентської ради",      "url": "https://bit.ly/3OAYW3l"             },
+            { "icon": "👾", "color": "ipu", "title": "CSTU Esports Twitch",   "sub": "Ігровий стрімінг",             "url": "https://www.twitch.tv/cstu_esports"  },
+            { "icon": "🎮", "color": "iin", "title": "CSTU Esports Discord",  "sub": "Ігровий сервер",               "url": "https://discord.gg/qVkHKuzTH"        }
+          ]
+        },
+        {
+          "id": "activities",
+          "label": "🎉 Заходи та активності",
+          "rows": [
+            { "icon": "🤠", "color": "io", "title": "Клуб Мафії ЧДТУ",             "sub": "Хочеш пограти в мафію?",         "url": "https://bit.ly/2E6VyxD"        },
+            { "icon": "✍️", "color": "ig", "title": "Записатися у студраду та інше","sub": "Linktree — всі посилання",       "url": "https://linktr.ee/sr_cstu"     }
+          ]
+        }
+      ]
+    },
+
+    "useful": {
+      "title": "🛠️ Корисне",
+      "sections": [
+        {
+          "id": "finance",
+          "label": "💳 Фінанси та документи",
+          "rows": [
+            { "icon": "💳", "color": "ig",  "title": "Платежі ЧДТУ (Privat24)",  "sub": "Оплата навчання та гуртожитку",       "url": "https://bit.ly/3v04Tiu"           },
+            { "icon": "📧", "color": "ib",  "title": "Корпоративна пошта",       "sub": "Отримати email @chdtu.edu.ua",        "url": "https://chdtu.edu.ua/cikt/e-mail" },
+            { "icon": "📞", "color": "igr", "title": "Довідник телефонів",       "sub": "Всі кафедри, деканати, служби",       "url": "https://bit.ly/3tD9VjK"           },
+            { "icon": "✉️", "color": "igr", "title": "Довідник Email-адрес",     "sub": "Всі служби університету",             "url": "https://bit.ly/3zF7f8U"           }
+          ]
+        },
+        {
+          "id": "buildings",
+          "label": "🏫 Корпуси університету",
+          "rows": [
+            { "icon": "🗺️", "color": "ib", "title": "Розташування корпусів #1", "sub": "Google Maps", "url": "https://bit.ly/3xW82Sn" },
+            { "icon": "📍", "color": "it", "title": "Розташування корпусів #2", "sub": "Альтернативна карта", "url": "https://bit.ly/3vwbu31" }
+          ]
+        },
+        {
+          "id": "manifest",
+          "label": "📌 Джерело інформації",
+          "rows": [
+            { "icon": "📋", "color": "ib", "title": "Маніфест інформації ЧДТУ", "sub": "Всі корисні посилання для студента", "url": "https://telegra.ph/Man%D1%96fest-%D1%96nformac%D1%96i-11-03" }
+          ]
+        }
+      ]
+    },
+
+    "transport": {
+      "title": "🚌 Транспорт",
+      "sections": [
+        {
+          "id": "bus-trolley",
+          "label": "🚍 Автобуси та тролейбуси — Черкаси",
+          "rows": [
+            { "icon": "🚍", "color": "ig",  "title": "Відстеження автобусів онлайн",       "sub": "🟢 Android",                      "url": "https://bit.ly/3xUU7eR"   },
+            { "icon": "🚎", "color": "it",  "title": "Транспорт в реальному часі",         "sub": "🟢 Android",                      "url": "https://bit.ly/3L246mG"   },
+            { "icon": "🚎", "color": "ibk", "title": "Транспорт в реальному часі",         "sub": "🍏 iOS",                          "url": "https://apple.co/3KYV3D2" },
+            { "icon": "🗺️", "color": "io",  "title": "Маршрути авт./тролейбусів",         "sub": "🟢 Android",                      "url": "https://bit.ly/398zTo1"   }
+          ]
+        },
+        {
+          "id": "trains",
+          "label": "🚆 Потяги та приміські поїзди",
+          "rows": [
+            { "icon": "🚉", "color": "ib",  "title": "Приміські поїзди ⚡ топчик",         "sub": "Офіційний додаток",                "url": "https://bit.ly/3D0Bur0"   },
+            { "icon": "🚂", "color": "iin", "title": "Потяги України",                    "sub": "Офіційний додаток",                "url": "https://bit.ly/3TMdv5O"   },
+            { "icon": "😈", "color": "io",  "title": "Альтернативний розклад поїздів",    "sub": "Іноді баги 😅",                    "url": "https://bit.ly/3MVmKhG"   },
+            { "icon": "🕸️", "color": "igr", "title": "Сайт-розклад приміських поїздів",  "sub": "Веб-версія",                       "url": "https://bit.ly/3G8jA6N"   }
+          ]
+        }
+      ]
+    },
+
+    "admin": {
+      "title": "📋 Адміністративне",
+      "sections": [
+        {
+          "id": "admin-all",
+          "label": "Всі адміністративні ресурси",
+          "rows": [
+            { "icon": "💳", "color": "ig",  "title": "Платежі ЧДТУ (Privat24)",   "sub": "Оплата навчання та гуртожитку",       "url": "https://bit.ly/3v04Tiu"             },
+            { "icon": "📧", "color": "ib",  "title": "Корпоративна пошта",        "sub": "Отримати @chdtu.edu.ua",              "url": "https://chdtu.edu.ua/cikt/e-mail"   },
+            { "icon": "📞", "color": "igr", "title": "Довідник телефонів",        "sub": "Всі кафедри, деканати, служби",       "url": "https://bit.ly/3tD9VjK"             },
+            { "icon": "✉️", "color": "igr", "title": "Довідник Email-адрес",      "sub": "Всі служби університету",             "url": "https://bit.ly/3zF7f8U"             },
+            { "icon": "🗺️", "color": "ib",  "title": "Карта корпусів #1",         "sub": "Google Maps",                         "url": "https://bit.ly/3xW82Sn"             },
+            { "icon": "📍", "color": "it",  "title": "Карта корпусів #2",         "sub": "Альтернативна карта",                 "url": "https://bit.ly/3vwbu31"             },
+            { "icon": "🏆", "color": "iyl", "title": "Рейтинг студентів",         "sub": "Всі факультети",                      "url": "https://bit.ly/308gfku"             },
+            { "icon": "✌️", "color": "ipu", "title": "Вибіркові предмети",        "sub": "Для 2-го курсу",                      "url": "https://bit.ly/3xHsFl6"             }
+          ]
+        },
+        {
+          "id": "admin-manifest",
+          "label": "Джерело інформації",
+          "rows": [
+            { "icon": "📌", "color": "ib", "title": "Маніфест інформації ЧДТУ", "sub": "Оригінальне джерело всіх посилань", "url": "https://telegra.ph/Man%D1%96fest-%D1%96nformac%D1%96i-11-03" }
+          ]
+        }
+      ]
+    }
+
+  },
+
+  "ects": [
+    { "letter": "A",  "color": "#30d158", "range": "90–100", "name": "Відмінно",                                  "width": 100 },
+    { "letter": "B",  "color": "#5ac8fa", "range": "82–89",  "name": "Дуже добре",                               "width": 89  },
+    { "letter": "C",  "color": "#3b9eff", "range": "74–81",  "name": "Добре",                                    "width": 80  },
+    { "letter": "D",  "color": "#ffd60a", "range": "64–73",  "name": "Задовільно",                               "width": 73  },
+    { "letter": "E",  "color": "#ff9f0a", "range": "60–63",  "name": "Достатньо",                                "width": 63  },
+    { "letter": "FX", "color": "#ff453a", "range": "35–59",  "name": "Незадовільно (повторне складання)",        "width": 50  },
+    { "letter": "F",  "color": "#8e8e93", "range": "1–34",   "name": "Незадовільно (повторне вивчення)",         "width": 25  }
+  ]
+}
