@@ -107,41 +107,161 @@ document.querySelectorAll('[data-target]').forEach(el =>
 document.querySelectorAll('[data-open]').forEach(el =>
   el.addEventListener('click', (e) => { e.preventDefault(); showScreen(el.dataset.open); }));
 
-// ---------- profile photo -> white-background passport frame ----------
+// ---------- profile: persistence (localStorage) ----------
+const PROFILE_KEY = 'cdtu_hub_profile_v1';
 const photoInput = document.getElementById('photoInput');
 const uploadBtn = document.getElementById('uploadBtn');
 const bigAvatar = document.getElementById('bigAvatar');
 const dashAvatar = document.getElementById('dashAvatar');
+const photoStatus = document.getElementById('photoStatus');
+const dashNameEl = document.getElementById('dashName');
+const dashMetaEl = document.getElementById('dashMeta');
+const inName = document.getElementById('inName');
+const inGroup = document.getElementById('inGroup');
+const inFaculty = document.getElementById('inFaculty');
+
+function readProfile(){
+  try{ return JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}'); }
+  catch(e){ return {}; }
+}
+
+function renderProfile(p){
+  if (p.name) inName.value = p.name;
+  if (p.group) inGroup.value = p.group;
+  if (p.faculty) inFaculty.value = p.faculty;
+  dashNameEl.textContent = p.name || 'Додайте своє фото';
+  dashMetaEl.textContent = [p.group, p.faculty].filter(Boolean).join(' · ') || 'Група · Факультет';
+  if (p.photo){
+    bigAvatar.innerHTML = `<img src="${p.photo}" alt="Фото 3x4">`;
+    dashAvatar.innerHTML = `<img src="${p.photo}" alt="Фото 3x4">`;
+  }
+}
+
+function saveProfile(photoDataUrl){
+  const existing = readProfile();
+  const profile = {
+    name: inName.value.trim(),
+    group: inGroup.value.trim(),
+    faculty: inFaculty.value,
+    photo: photoDataUrl !== undefined ? photoDataUrl : existing.photo,
+  };
+  try{ localStorage.setItem(PROFILE_KEY, JSON.stringify(profile)); }
+  catch(e){ console.warn('Не вдалося зберегти профіль локально', e); }
+  return profile;
+}
+
+renderProfile(readProfile());
+
+document.getElementById('saveProfileBtn').addEventListener('click', () => {
+  const p = saveProfile();
+  renderProfile(p);
+  showScreen('dashboard');
+});
+
+// ---------- profile photo: AI background removal (client-side, TensorFlow.js BodyPix) ----------
+let bodyPixNet = null;
+let bodyPixLoadingPromise = null;
+
+function loadScriptOnce(src){
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) return resolve();
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error('Не вдалося завантажити ' + src));
+    document.head.appendChild(s);
+  });
+}
+
+async function ensureBodyPixModel(){
+  if (bodyPixNet) return bodyPixNet;
+  if (!bodyPixLoadingPromise){
+    bodyPixLoadingPromise = (async () => {
+      if (!window.tf){
+        await loadScriptOnce('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js');
+      }
+      if (!window.bodyPix){
+        await loadScriptOnce('https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.0/dist/body-pix.min.js');
+      }
+      bodyPixNet = await bodyPix.load({ architecture: 'MobileNetV1', outputStride: 16, multiplier: 0.75, quantBytes: 2 });
+      return bodyPixNet;
+    })();
+  }
+  return bodyPixLoadingPromise;
+}
+
+// Returns a canvas the size of the source image with background pixels made transparent
+async function cutOutPerson(img){
+  const net = await ensureBodyPixModel();
+  const segmentation = await net.segmentPerson(img, {
+    internalResolution: 'medium',
+    segmentationThreshold: 0.7,
+  });
+  const canvas = document.createElement('canvas');
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const px = frame.data;
+  for (let i = 0; i < segmentation.data.length; i++){
+    if (segmentation.data[i] === 0) px[i * 4 + 3] = 0; // transparent background pixel
+  }
+  ctx.putImageData(frame, 0, 0);
+  return canvas;
+}
+
+// Composites a source image/canvas centered & cropped onto a solid white 3x4 canvas
+function composeOnWhite(source, W = 300, H = 400){
+  const canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+  const sw = source.naturalWidth || source.width;
+  const sh = source.naturalHeight || source.height;
+  const scale = Math.max(W / sw, H / sh);
+  const w = sw * scale, h = sh * scale;
+  ctx.drawImage(source, (W - w) / 2, (H - h) / 2, w, h);
+  return canvas;
+}
+
+function setPhotoStatus(text){
+  if (!text){ photoStatus.hidden = true; return; }
+  photoStatus.textContent = text;
+  photoStatus.hidden = false;
+}
 
 uploadBtn.addEventListener('click', () => photoInput.click());
 photoInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
   if (!file) return;
   const img = new Image();
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    const W = 300, H = 400; // 3x4 ratio
-    canvas.width = W; canvas.height = H;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0,0,W,H);
-    const scale = Math.max(W / img.width, H / img.height);
-    const w = img.width * scale, h = img.height * scale;
-    ctx.drawImage(img, (W-w)/2, (H-h)/2, w, h);
-    const url = canvas.toDataURL('image/png');
-    bigAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
-    dashAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
+  img.onload = async () => {
+    uploadBtn.disabled = true;
+    setPhotoStatus('🧠 ШІ вирізає фон — секунду…');
+    try{
+      const cutout = await cutOutPerson(img);
+      const finalCanvas = composeOnWhite(cutout);
+      const url = finalCanvas.toDataURL('image/png');
+      bigAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
+      dashAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
+      saveProfile(url);
+      setPhotoStatus('✅ Фон замінено на білий і збережено');
+    }catch(err){
+      console.warn('ШІ-вирізання фону не вдалося, фото додано без нього', err);
+      const finalCanvas = composeOnWhite(img);
+      const url = finalCanvas.toDataURL('image/png');
+      bigAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
+      dashAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
+      saveProfile(url);
+      setPhotoStatus('⚠️ Немає з’єднання з ШІ-модулем — фото збережено на білому фоні без автоматичного вирізання.');
+    }finally{
+      uploadBtn.disabled = false;
+      setTimeout(() => setPhotoStatus(null), 5000);
+    }
   };
   img.src = URL.createObjectURL(file);
-});
-
-document.getElementById('saveProfileBtn').addEventListener('click', () => {
-  const name = document.getElementById('inName').value.trim();
-  const group = document.getElementById('inGroup').value.trim();
-  const faculty = document.getElementById('inFaculty').value;
-  document.getElementById('dashName').textContent = name || 'Студент ЧДТУ';
-  document.getElementById('dashMeta').textContent = [group, faculty].filter(Boolean).join(' · ') || 'Група · Факультет';
-  showScreen('dashboard');
 });
 
 // ---------- rating calculator ----------

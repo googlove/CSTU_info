@@ -150,7 +150,8 @@
         <div class="avatar avatar-big" id="bigAvatar"><span class="avatar-placeholder">📷</span></div>
         <input type="file" id="photoInput" accept="image/*" hidden>
         <button class="pill-btn" id="uploadBtn">📸 Завантажити фото 3×4</button>
-        <p class="hint">Фото буде автоматично вписане в білий паспортний фон. Для ідеального вирізання фону скористайтесь сервісом remove.bg перед завантаженням.</p>
+        <p class="hint" id="photoStatus" hidden></p>
+        <p class="hint">ШІ автоматично вирізає фон і вставляє чисто білий, як на паспортному фото. Потрібне підключення до інтернету для першого завантаження ШІ-моделі (далі працює швидше з кешу).</p>
       </div>
       <div class="form-grid">
         <label>ПІБ <input type="text" id="inName" placeholder="Іванов Іван Іванович"></label>
