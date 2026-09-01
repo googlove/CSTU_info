@@ -184,9 +184,20 @@
       <p class="hint">Фільтри для швидкого перегляду. Повний розклад та актуальні дані — за офіційними джерелами нижче.</p>
     </div>
     <div class="glass card">
+      <div class="widget-head"><span>🖥️ Вбудований розклад (tt.chdtu.edu.ua)</span></div>
+      <p class="hint">Це офіційна CGI-система деканату — вона не має публічного API для передачі даних у застосунок напряму, тому нижче вбудована сама сторінка. Оберіть інститут/групу у формі як зазвичай.</p>
+      <div class="iframe-wrap">
+        <iframe id="ttFrame" src="https://tt.chdtu.edu.ua/cgi-bin/timetable.cgi" title="Розклад ЧДТУ" loading="lazy"></iframe>
+      </div>
+      <p class="hint" id="ttFallback">Не завантажилось? Деякі сайти забороняють показ у вбудованому вікні.
+        <a href="https://tt.chdtu.edu.ua/cgi-bin/timetable.cgi" target="_blank" rel="noopener">Відкрити розклад окремою вкладкою →</a>
+      </p>
+    </div>
+    <div class="glass card">
       <div class="widget-head"><span>🔔 Дзвінки / перерви</span></div>
       <a class="pill-btn" href="https://chdtu.edu.ua/study/schedule" target="_blank" rel="noopener">Розклад дзвінків і перерв →</a>
     </div>
+    <h2 class="section-sub-title">Альтернативні джерела розкладу</h2>
     <div class="link-list" id="scheduleLinks"></div>
   </section>
 
@@ -223,8 +234,8 @@
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">📝 Заяви та документи</h1>
     <div class="glass card">
-      <p>Шаблони заяв та документів зібрано в спільній папці Dropbox.</p>
-      <a class="pill-btn primary" href="https://www.dropbox.com/scl/fo/54rcd9rkcvk2m1sah615a/ANeoloqEB1cYp7jz5t3m6Hk?rlkey=c0wcciqfplvas9i5clwcbawpm&st=8cca7uw0&dl=0" target="_blank" rel="noopener">📂 Відкрити Dropbox з шаблонами →</a>
+      <p>Шаблони заяв та документів зібрано в спільній папці Google Drive.</p>
+      <a class="pill-btn primary" href="https://drive.google.com/drive/folders/1aan3_SCms-nQS4AOiZ15SeAlAVpqBQAV" target="_blank" rel="noopener">📂 Відкрити Google Drive з шаблонами →</a>
     </div>
   </section>
 

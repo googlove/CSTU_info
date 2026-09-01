@@ -217,7 +217,65 @@ body{
 .iso-building .ico{ font-size:38px; filter: drop-shadow(0 10px 8px rgba(0,0,0,0.4)); }
 .iso-building .lbl{ margin-top:4px; font-size:10px; background: rgba(0,0,0,0.4); padding:2px 6px; border-radius:8px; font-family: var(--font); white-space:nowrap; }
 
+/* ---------- schedule iframe ---------- */
+.iframe-wrap{ border-radius:14px; overflow:hidden; border:1px solid var(--glass-border); background:#fff; margin:10px 0; }
+.iframe-wrap iframe{ width:100%; height:520px; border:0; display:block; }
+
+/* ---------- pointer/hover-capable devices (desktop & trackpads) ---------- */
+@media (hover: hover) and (pointer: fine){
+  .nav-item:hover{ background: rgba(255,255,255,0.10); }
+  .quick-tile:hover{ background: var(--glass-bg-strong); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
+  .pill-btn:hover{ background: rgba(255,255,255,0.18); }
+  .pill-btn.primary:hover{ filter: brightness(1.08); }
+  .link-item:hover{ background: rgba(255,255,255,0.14); transform: translateX(2px); }
+  .widget:hover{ box-shadow: 0 12px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.18); }
+  .iso-building:hover{ transform: translateY(-6px) scale(1.06); }
+  .burger:hover{ background: var(--glass-bg-strong); }
+  .install-btn:hover{ background: var(--glass-bg); }
+  .quick-tile, .pill-btn, .link-item, .widget, .iso-building, .burger{ transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+}
+
+/* ---------- tablet ---------- */
 @media (min-width: 640px){
   .widget-grid{ grid-template-columns: 1fr 1fr; }
   .widget-profile{ grid-column: 1 / -1; }
+  .quick-grid{ grid-template-columns: repeat(6, 1fr); }
+}
+
+/* ---------- desktop: persistent sidebar layout ---------- */
+@media (min-width: 1024px){
+  .burger{ display:none; }
+  .overlay{ display:none; }
+  .install-btn{ margin-left:auto; }
+
+  .sidebar{
+    transform:none;
+    box-shadow:none;
+    border-right:1px solid rgba(255,255,255,0.14);
+  }
+
+  .topbar{
+    margin-left:300px;
+    padding-left:24px;
+  }
+
+  .main{
+    margin-left:300px;
+    max-width:1100px;
+    padding:28px 32px 60px;
+  }
+
+  .topbar-title{ font-size:18px; }
+
+  .widget-grid{ grid-template-columns: repeat(3, 1fr); gap:18px; }
+  .widget-profile{ grid-column: auto; }
+  .quick-grid{ grid-template-columns: repeat(6, 1fr); }
+  .link-list{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+  .form-grid{ flex-direction:row; }
+  .form-grid label{ flex:1; }
+  .iframe-wrap iframe{ height:640px; }
+}
+
+@media (min-width: 1280px){
+  .main{ max-width:1240px; }
 }
