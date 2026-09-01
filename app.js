@@ -4,17 +4,13 @@ const scheduleLinks = [
   { emo:'🤖', ttl:'Бот розкладу ЧДТУ', sub:'@cdu_rozklad_bot', url:'https://t.me/cdu_rozklad_bot' },
   { emo:'🖥️', ttl:'Розклад (tt.chdtu.edu.ua)', sub:'офіційна таблиця розкладу', url:'https://tt.chdtu.edu.ua/cgi-bin/timetable.cgi' },
   { emo:'🤖', ttl:'Альтернативний бот розкладу', sub:'@rozklad_bot', url:'https://t.me/rozklad_bot' },
-  { emo:'🍎', ttl:'Мій розклад (App Store)', sub:'iOS застосунок', url:'https://apps.apple.com/ua/app/%D0%BC%D1%96%D0%B9-%D1%80%D0%BE%D0%B7%D0%BA%D0%BB%D0%B0%D0%B4/id1643557284' },
-  { emo:'📱', ttl:'Schedule (Play Market)', sub:'ru.candysoft.schedule', url:'https://play.google.com/store/apps/details?id=ru.candysoft.schedule' },
+  { emo:'🍎', ttl:'Мій розклад (App Store)', sub:'iOS застосунок', url:'https://apps.apple.com/ua/app/%D0%BC%D1%96%D0%B9-%D1%80%D0%BE%D0%B7%D0%BA%D0%BB%D0%B0%D0%B4/id1643557284' }
 ];
 
 const generalLinks = [
   { emo:'💬', ttl:'Чат ЧДТУ', sub:'загальний студентський чат', url:'https://t.me/cstu_chat' },
   { emo:'📰', ttl:'Канал новин ЧДТУ', sub:'офіційні новини', url:'https://t.me/chdtu' },
-  { emo:'🟡', ttl:'Студентська рада — Telegram', sub:'@stud_rada_cstu', url:'https://t.me/stud_rada_cstu/' },
-  { emo:'🔥', ttl:'Студентська рада — Instagram', sub:'@stud_rada_chstu', url:'https://instagram.com/stud_rada_chstu/' },
-  { emo:'🧡', ttl:'ЧДТУ — офіційний Instagram', sub:'@chstu_official', url:'https://instagram.com/chstu_official/' },
-  { emo:'✍️', ttl:'Записатися в Студраду', sub:'та інші можливості', url:'https://linktr.ee/sr_cstu' },
+  { emo:'🟡', ttl:'Студентська рада', sub:'Telegram', url:'https://t.me/stud_rada_cstu/' }
 ];
 
 const facultyLinks = [
@@ -22,7 +18,7 @@ const facultyLinks = [
   { emo:'🏗️', ttl:'ФГТ', sub:'Факультет гуманітарних технологій', url:'https://t.me/Brochetos' },
   { emo:'📊', ttl:'ФЕУ', sub:'Факультет економіки та управління', url:'https://t.me/artofan_lat' },
   { emo:'🔌', ttl:'ФЕТАМ', sub:'Електронні технології, автотранспорт, машинобудування', url:'https://t.me/elvinaaa_aa' },
-  { emo:'🏗️', ttl:'ФТБРП', sub:'Технології, будівництво та природокористування', url:'https://t.me/NK3105nk' },
+  { emo:'🏗️', ttl:'ФТБРП', sub:'Технології, будівництво та природокористування', url:'https://t.me/NK3105nk' }
 ];
 
 const gradeScale = [
@@ -32,19 +28,12 @@ const gradeScale = [
   ['64–73','D','Задовільно'],
   ['60–63','E','Достатньо'],
   ['35–59','FX','Незадовільно, можливе повторне складання'],
-  ['1–34','F','Незадовільно, обов’язкове повторне вивчення'],
-];
-
-const isoBuildings = [
-  { name:'Головний корпус', ico:'🏛️', x:'50%' },
-  { name:'Корпус ФІТІС', ico:'🏢', x:'20%' },
-  { name:'Спортзал', ico:'🏟️', x:'78%' },
-  { name:'Гуртожиток №1', ico:'🏠', x:'32%' },
-  { name:'Гуртожиток №2', ico:'🏠', x:'66%' },
+  ['1–34','F','Незадовільно, обов’язкове повторне вивчення']
 ];
 
 // ---------- render lists ----------
 function renderList(container, items){
+  if(!container) return;
   container.innerHTML = items.map(i => `
     <a class="glass link-item" href="${i.url}" target="_blank" rel="noopener">
       <span class="emo">${i.emo}</span>
@@ -57,27 +46,18 @@ renderList(document.getElementById('generalLinks'), generalLinks);
 renderList(document.getElementById('facultyLinks'), facultyLinks);
 
 const gradeTableBody = document.getElementById('gradeTableBody');
-gradeTableBody.innerHTML = gradeScale.map(([range, letter, label]) =>
-  `<tr><td>${range}</td><td><strong>${letter}</strong></td><td>${label}</td></tr>`
-).join('');
+if(gradeTableBody) {
+    gradeTableBody.innerHTML = gradeScale.map(([range, letter, label]) =>
+      `<tr><td>${range}</td><td><strong>${letter}</strong></td><td>${label}</td></tr>`
+    ).join('');
+}
 
-// ---------- iso campus ----------
-const isoStage = document.getElementById('isoStage');
-const isoPreview = document.getElementById('isoPreview');
-isoStage.innerHTML = isoBuildings.map((b,idx) => `
-  <div class="iso-building" style="left:${b.x}; transform: translateX(-50%) translateZ(${idx*6}px);">
-    <span class="ico">${b.ico}</span>
-    <span class="lbl">${b.name}</span>
-  </div>`).join('');
-isoStage.querySelectorAll('.iso-building').forEach(el => {
-  el.addEventListener('click', () => window.open('https://chdtu.edu.ua/kontaktna-informatsiya/roztashuvannya','_blank'));
-});
-
-// ---------- navigation ----------
+// ---------- navigation & History API ----------
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
 const main = document.getElementById('main');
 const burgerBtn = document.getElementById('burgerBtn');
+let mapInitialized = false;
 
 function openSidebar(){ sidebar.classList.add('open'); overlay.classList.add('show'); main.classList.add('blurred'); burgerBtn.classList.add('open'); }
 function closeSidebar(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); main.classList.remove('blurred'); burgerBtn.classList.remove('open'); }
@@ -95,17 +75,122 @@ document.addEventListener('touchend', e => {
   touchStartX = null;
 }, {passive:true});
 
-function showScreen(id){
+// Function to switch screens and update URL
+function showScreen(id, pushHistory = true){
   document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
   const target = document.getElementById(id);
-  if (target) target.classList.remove('hidden');
+  
+  if (target) {
+      target.classList.remove('hidden');
+      
+      // Update Title
+      const pageTitle = (target.dataset.title || 'ЧДТУ HUB') + " - ЧДТУ";
+      document.title = pageTitle;
+      
+      // History API update
+      if (pushHistory) {
+          const url = id === 'dashboard' ? '/' : `/${id}`;
+          window.history.pushState({ page: id }, pageTitle, url);
+      }
+      
+      // Initialize map if needed
+      if (id === 'campus' && !mapInitialized) {
+          initMap();
+      }
+  }
+  
   closeSidebar();
   window.scrollTo({top:0, behavior:'smooth'});
 }
-document.querySelectorAll('[data-target]').forEach(el =>
-  el.addEventListener('click', () => showScreen(el.dataset.target)));
-document.querySelectorAll('[data-open]').forEach(el =>
-  el.addEventListener('click', (e) => { e.preventDefault(); showScreen(el.dataset.open); }));
+
+document.querySelectorAll('[data-target], [data-open]').forEach(el => {
+  el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = el.dataset.target || el.dataset.open;
+      showScreen(targetId);
+  });
+});
+
+// Handle browser Back/Forward buttons
+window.addEventListener('popstate', (event) => {
+    const page = (event.state && event.state.page) ? event.state.page : 'dashboard';
+    showScreen(page, false);
+});
+
+// Read initial URL on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const path = window.location.pathname.replace(/\//g, '');
+    const targetScreen = (path && document.getElementById(path)) ? path : 'dashboard';
+    showScreen(targetScreen, false);
+});
+
+// ---------- 3D GOOGLE MAPS ----------
+window.initGoogleMap = function() {
+    const activeScreen = document.querySelector('.screen:not(.hidden)');
+    if (activeScreen && activeScreen.id === 'campus') {
+        renderMap();
+    }
+};
+
+function initMap() {
+    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined' && !mapInitialized) {
+        renderMap();
+    }
+}
+
+function renderMap() {
+    const mapOptions = {
+        center: { lat: 49.4390, lng: 32.0650 }, 
+        zoom: 14.5,
+        tilt: 55,       
+        heading: -17,   
+        // mapId: 'ТВІЙ_MAP_ID_ТУТ', // Для повноцінних 3D будівель створи Vector Map ID в Google Console
+        disableDefaultUI: true, 
+        zoomControl: true       
+    };
+
+    const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    const infoWindow = new google.maps.InfoWindow();
+
+    const cdtuLocations = [
+        { id: "corp1-4", title: "Корпуси № 1, 2, 3, 4", address: "бул. Шевченка, 460", coords: { lat: 49.4348, lng: 32.0733 } },
+        { id: "corp6-7", title: "Корпуси № 6, 7", address: "вул. Добровольського, 5", coords: { lat: 49.4310, lng: 32.0710 } },
+        { id: "corp10", title: "Корпус № 10", address: "бульв. Шевченка, 333", coords: { lat: 49.4411, lng: 32.0632 } },
+        { id: "dorm1", title: "Гуртожиток № 1", address: "вул. Кобзарська, 58", coords: { lat: 49.4355, lng: 32.0691 } },
+        { id: "dorm2", title: "Гуртожиток № 2", address: "вул. Чехова, 42", coords: { lat: 49.4321, lng: 32.0741 } },
+        { id: "dorm3", title: "Гуртожиток № 3", address: "вул. Смілянська, 97/1", coords: { lat: 49.4166, lng: 32.0521 } },
+        { id: "dorm4", title: "Гуртожиток № 4", address: "бульв. Шевченка, 333", coords: { lat: 49.4411, lng: 32.0632 } }
+    ];
+
+    cdtuLocations.forEach(loc => {
+        const marker = new google.maps.Marker({
+            position: loc.coords,
+            map: map,
+            title: loc.title,
+            animation: google.maps.Animation.DROP
+        });
+
+        const destination = encodeURIComponent(`${loc.address}, Черкаси`);
+        const routeUrl = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=transit`;
+
+        const popupHTML = `
+            <div style="color: #333; padding: 5px; min-width: 180px;">
+                <h3 style="margin: 0 0 5px 0; font-size: 16px; color: #0a2540;">${loc.title}</h3>
+                <p style="margin: 0 0 12px 0; font-size: 13px; color: #555;">${loc.address}</p>
+                <a href="${routeUrl}" target="_blank" rel="noopener" style="background-color: #29b6e8; color: #fff; padding: 8px 12px; border-radius: 8px; text-decoration: none; display: block; text-align: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                    🚌 Як доїхати
+                </a>
+            </div>
+        `;
+
+        marker.addListener("click", () => {
+            infoWindow.setContent(popupHTML);
+            infoWindow.open(map, marker);
+        });
+    });
+
+    mapInitialized = true;
+}
 
 // ---------- profile: persistence (localStorage) ----------
 const PROFILE_KEY = 'cdtu_hub_profile_v1';
@@ -158,7 +243,7 @@ document.getElementById('saveProfileBtn').addEventListener('click', () => {
   showScreen('dashboard');
 });
 
-// ---------- profile photo: AI background removal (client-side, TensorFlow.js BodyPix) ----------
+// ---------- profile photo: AI background removal (TensorFlow.js) ----------
 let bodyPixNet = null;
 let bodyPixLoadingPromise = null;
 
@@ -190,13 +275,9 @@ async function ensureBodyPixModel(){
   return bodyPixLoadingPromise;
 }
 
-// Returns a canvas the size of the source image with background pixels made transparent
 async function cutOutPerson(img){
   const net = await ensureBodyPixModel();
-  const segmentation = await net.segmentPerson(img, {
-    internalResolution: 'medium',
-    segmentationThreshold: 0.7,
-  });
+  const segmentation = await net.segmentPerson(img, { internalResolution: 'medium', segmentationThreshold: 0.7 });
   const canvas = document.createElement('canvas');
   canvas.width = img.naturalWidth;
   canvas.height = img.naturalHeight;
@@ -205,13 +286,12 @@ async function cutOutPerson(img){
   const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const px = frame.data;
   for (let i = 0; i < segmentation.data.length; i++){
-    if (segmentation.data[i] === 0) px[i * 4 + 3] = 0; // transparent background pixel
+    if (segmentation.data[i] === 0) px[i * 4 + 3] = 0;
   }
   ctx.putImageData(frame, 0, 0);
   return canvas;
 }
 
-// Composites a source image/canvas centered & cropped onto a solid white 3x4 canvas
 function composeOnWhite(source, W = 300, H = 400){
   const canvas = document.createElement('canvas');
   canvas.width = W; canvas.height = H;
@@ -249,13 +329,13 @@ photoInput.addEventListener('change', (e) => {
       saveProfile(url);
       setPhotoStatus('✅ Фон замінено на білий і збережено');
     }catch(err){
-      console.warn('ШІ-вирізання фону не вдалося, фото додано без нього', err);
+      console.warn('ШІ-вирізання фону не вдалося', err);
       const finalCanvas = composeOnWhite(img);
       const url = finalCanvas.toDataURL('image/png');
       bigAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
       dashAvatar.innerHTML = `<img src="${url}" alt="Фото 3x4">`;
       saveProfile(url);
-      setPhotoStatus('⚠️ Немає з’єднання з ШІ-модулем — фото збережено на білому фоні без автоматичного вирізання.');
+      setPhotoStatus('⚠️ Збережено без ШІ-вирізання.');
     }finally{
       uploadBtn.disabled = false;
       setTimeout(() => setPhotoStatus(null), 5000);
