@@ -7,23 +7,23 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ЧДТУ HUB">
-<title>Головна - ЧДТУ</title>
+<title>ЧДТУ: Першокурсник</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
 <link rel="stylesheet" href="style.css">
-
-<!-- Підключення Google Maps API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHdFZ6Su4XElgd9Y8XxBsK4FY17dHIrTM&callback=initGoogleMap"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 <body>
 
+<!-- Background -->
 <div class="bg-scene" aria-hidden="true">
   <div class="blob blob-a"></div>
   <div class="blob blob-b"></div>
   <div class="blob blob-c"></div>
 </div>
 
+<!-- Topbar -->
 <header class="topbar">
   <button class="burger" id="burgerBtn" aria-label="Відкрити меню">
     <span></span><span></span><span></span>
@@ -35,8 +35,10 @@
   <button class="install-btn" id="installBtn" hidden>Встановити ⬇️</button>
 </header>
 
+<!-- Overlay -->
 <div class="overlay" id="overlay"></div>
 
+<!-- Sidebar -->
 <nav class="sidebar" id="sidebar">
   <div class="sidebar-head">
     <img src="icon-192.png" class="crest-side" alt="Герб ЧДТУ">
@@ -48,41 +50,42 @@
 
   <div class="nav-group">
     <div class="nav-label">📚 Навчання</div>
-    <button class="nav-item" data-open="schedule">🗓️ Розклад занять</button>
-    <button class="nav-item" data-open="rating">🏆 Рейтинг та оцінки</button>
-    <button class="nav-item" data-open="docs">📝 Заяви та документи</button>
-    <button class="nav-item" data-open="directory">📞 Довідник</button>
+    <button class="nav-item" data-target="schedule">🗓️ Розклад занять</button>
+    <button class="nav-item" data-target="rating">🏆 Рейтинг та оцінки</button>
+    <button class="nav-item" data-target="docs">📝 Заяви та документи</button>
+    <button class="nav-item" data-target="directory">📞 Довідник</button>
   </div>
 
   <div class="nav-group">
     <div class="nav-label">💬 Спільноти (ЧДТУ HUB)</div>
-    <button class="nav-item" data-open="chats">🎓 Загальні канали</button>
-    <button class="nav-item" data-open="faculties">🏫 Факультетські чати</button>
+    <button class="nav-item" data-target="chats">🎓 Загальні канали</button>
+    <button class="nav-item" data-target="faculties">🏫 Факультетські чати</button>
   </div>
 
   <div class="nav-group">
     <div class="nav-label">🏠 Гуртожиток</div>
-    <button class="nav-item" data-open="dorms">🏠 Гуртожитки №1 / №2</button>
+    <button class="nav-item" data-target="dorms">🏠 Гуртожитки №1 / №2</button>
   </div>
 
   <div class="nav-group">
     <div class="nav-label">🚌 Місто та транспорт</div>
-    <button class="nav-item" data-open="transport">🚌 Транспорт та поїзди</button>
+    <button class="nav-item" data-target="transport">🚌 Транспорт та поїзди</button>
   </div>
 
   <div class="nav-group">
     <div class="nav-label">💳 Сервіси</div>
-    <button class="nav-item" data-open="services">💳 Оплата та підписки</button>
+    <button class="nav-item" data-target="services">💳 Оплата та підписки</button>
   </div>
 
   <div class="nav-group">
     <div class="nav-label">🏠 Головна</div>
-    <button class="nav-item" data-open="dashboard">🏠 Робочий стіл</button>
-    <button class="nav-item" data-open="profile">👤 Мій профіль</button>
-    <button class="nav-item" data-open="campus">🗺️ Кампус (3D)</button>
+    <button class="nav-item" data-target="dashboard">🏠 Робочий стіл</button>
+    <button class="nav-item" data-target="profile">👤 Мій профіль</button>
+    <button class="nav-item" data-target="campus">🗺️ Кампус (3D)</button>
   </div>
 </nav>
 
+<!-- Main -->
 <main class="main" id="main">
 
   <!-- DASHBOARD -->
@@ -91,6 +94,7 @@
     <p class="screen-sub">Все, що потрібно для навчання в ЧДТУ, — в одному місці.</p>
 
     <div class="widget-grid">
+
       <div class="glass widget widget-profile" data-open="profile">
         <div class="widget-head"><span>👤 Мій профіль</span></div>
         <div class="profile-row">
@@ -105,6 +109,10 @@
 
       <div class="glass widget widget-schedule" data-open="schedule">
         <div class="widget-head"><span>🗓️ Розклад на сьогодні</span></div>
+        <div class="mini-filters">
+          <select id="dashGroup"><option>Група</option><option>ІТ-31</option><option>КН-21</option><option>ЕК-12</option></select>
+          <select id="dashTeacher"><option>Викладач</option><option>Петренко О.В.</option><option>Кавва П.</option></select>
+        </div>
         <div class="lesson-next">
           <div class="lesson-time">09:00</div>
           <div>
@@ -112,14 +120,15 @@
             <div class="lesson-room">Ауд. —</div>
           </div>
         </div>
-        <button class="pill-btn" data-open="schedule">📚 Всі ресурси розкладу</button>
+        <a class="pill-btn" href="#schedule" data-open="schedule">📚 Всі ресурси розкладу</a>
       </div>
 
       <div class="glass widget widget-map" data-open="campus">
         <div class="widget-head"><span>🗺️ Локація (3D)</span></div>
         <div class="iso-preview" id="isoPreview"></div>
-        <button class="pill-btn" data-open="campus">📍 Відкрити 3D Карту</button>
+        <a class="pill-btn" href="https://chdtu.edu.ua/kontaktna-informatsiya/roztashuvannya" target="_blank" rel="noopener">📍 Google Maps / корпуси</a>
       </div>
+
     </div>
 
     <h2 class="section-sub-title">Швидкий доступ</h2>
@@ -143,7 +152,7 @@
         <input type="file" id="photoInput" accept="image/*" hidden>
         <button class="pill-btn" id="uploadBtn">📸 Завантажити фото 3×4</button>
         <p class="hint" id="photoStatus" hidden></p>
-        <p class="hint">ШІ автоматично вирізає фон і вставляє чисто білий.</p>
+        <p class="hint">ШІ автоматично вирізає фон і вставляє чисто білий, як на паспортному фото. Потрібне підключення до інтернету для першого завантаження ШІ-моделі (далі працює швидше з кешу).</p>
       </div>
       <div class="form-grid">
         <label>ПІБ <input type="text" id="inName" placeholder="Іванов Іван Іванович"></label>
@@ -157,6 +166,11 @@
       </div>
       <button class="pill-btn primary" id="saveProfileBtn">💾 Зберегти профіль</button>
     </div>
+    <div class="glass card">
+      <div class="widget-head"><span>✉️ Корпоративна пошта</span></div>
+      <p>Доступ до застосунків, сайтів, ШІ та Word діє за студентською підпискою. Переваг море — не вагайтесь, подавайте заявку.</p>
+      <a class="pill-btn" href="https://chdtu.edu.ua/cikt/e-mail" target="_blank" rel="noopener">Отримати корпоративну пошту →</a>
+    </div>
   </section>
 
   <!-- SCHEDULE -->
@@ -165,9 +179,17 @@
     <h1 class="screen-title">🗓️ Розклад занять</h1>
     <div class="glass card">
       <div class="widget-head"><span>🖥️ Вбудований розклад (tt.chdtu.edu.ua)</span></div>
+      <p class="hint">Це офіційна CGI-система деканату — вона не має публічного API для передачі даних у застосунок напряму, тому нижче вбудована сама сторінка. Оберіть інститут/групу у формі як зазвичай.</p>
       <div class="iframe-wrap">
         <iframe id="ttFrame" src="https://tt.chdtu.edu.ua/cgi-bin/timetable.cgi" title="Розклад ЧДТУ" loading="lazy"></iframe>
       </div>
+      <p class="hint" id="ttFallback">Не завантажилось? Деякі сайти забороняють показ у вбудованому вікні.
+        <a href="https://tt.chdtu.edu.ua/cgi-bin/timetable.cgi" target="_blank" rel="noopener">Відкрити розклад окремою вкладкою →</a>
+      </p>
+    </div>
+    <div class="glass card">
+      <div class="widget-head"><span>🔔 Дзвінки / перерви</span></div>
+      <a class="pill-btn" href="https://chdtu.edu.ua/study/schedule" target="_blank" rel="noopener">Розклад дзвінків і перерв →</a>
     </div>
     <h2 class="section-sub-title">Альтернативні джерела розкладу</h2>
     <div class="link-list" id="scheduleLinks"></div>
@@ -177,9 +199,11 @@
   <section class="screen hidden" id="rating" data-title="Рейтинг та оцінки">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">🏆 Рейтинг та оцінки</h1>
+
     <div class="glass card">
       <div class="widget-head"><span>🧮 Калькулятор рейтингового балу</span></div>
-      <div class="formula">R = 0.9 × (O₁ + … + Oₙ) / n + b</div>
+      <div class="formula">R = 0.9 × (O₁ + O₂ + … + Oₙ) / n + b</div>
+      <p class="hint">O — підсумкові оцінки з дисциплін за 100-бальною шкалою; b — додаткові бали (наука, спорт, творчість, до 10).</p>
       <div id="gradeList" class="grade-list"></div>
       <button class="pill-btn" id="addGradeBtn">➕ Додати оцінку</button>
       <label class="bonus-row">Додатковий бал (b, ≤10)
@@ -187,6 +211,7 @@
       </label>
       <div class="result-box" id="ratingResult">Ваш рейтинговий бал з'явиться тут</div>
     </div>
+
     <div class="glass card">
       <div class="widget-head"><span>📊 Таблиця відповідності оцінок</span></div>
       <table class="grade-table">
@@ -194,35 +219,46 @@
         <tbody id="gradeTableBody"></tbody>
       </table>
     </div>
+
+    <a class="pill-btn" href="https://chdtu.edu.ua/rating" target="_blank" rel="noopener">🏆 Загальний рейтинг студентів →</a>
   </section>
 
-  <!-- DOCS, DIRECTORY, CHATS, FACULTIES, DORMS, TRANSPORT, SERVICES -->
-  <!-- (Оригінальні блоки збережено) -->
+  <!-- DOCS -->
   <section class="screen hidden" id="docs" data-title="Заяви та документи">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">📝 Заяви та документи</h1>
     <div class="glass card">
+      <p>Шаблони заяв та документів зібрано в спільній папці Google Drive.</p>
       <a class="pill-btn primary" href="https://drive.google.com/drive/folders/1aan3_SCms-nQS4AOiZ15SeAlAVpqBQAV" target="_blank" rel="noopener">📂 Відкрити Google Drive з шаблонами →</a>
     </div>
   </section>
+
+  <!-- DIRECTORY -->
   <section class="screen hidden" id="directory" data-title="Довідник">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">📞 Довідник</h1>
     <div class="glass card">
+      <p>Телефони та e-mail кафедр і викладачів — на офіційному сайті ЧДТУ.</p>
       <a class="pill-btn" href="https://chdtu.edu.ua/kontaktna-informatsiya/phones" target="_blank" rel="noopener">📞 Відкрити довідник телефонів →</a>
     </div>
   </section>
+
+  <!-- CHATS -->
   <section class="screen hidden" id="chats" data-title="Загальні канали">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">🎓 Загальні канали</h1>
     <div class="link-list" id="generalLinks"></div>
   </section>
+
+  <!-- FACULTIES -->
   <section class="screen hidden" id="faculties" data-title="Факультетські чати">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">🏫 Факультетські чати</h1>
     <div class="link-list" id="facultyLinks"></div>
   </section>
-  <section class="screen hidden" id="dorms" data-title="Гуртожитки">
+
+  <!-- DORMS -->
+  <section class="screen hidden" id="dorms" data-title="Гуртожиток">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">🏠 Гуртожитки</h1>
     <div class="glass card">
@@ -236,39 +272,62 @@
       <a class="pill-btn" href="https://technostirka.com/ch/point/chdtu2d12" target="_blank" rel="noopener">🧺 Статус пральних машин</a>
     </div>
   </section>
+
+  <!-- TRANSPORT -->
   <section class="screen hidden" id="transport" data-title="Транспорт">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">🚌 Місто та транспорт</h1>
     <div class="glass card">
       <div class="widget-head"><span>🚏 Міський транспорт онлайн</span></div>
+      <p class="hint">Іноді не працює під час РЕБ.</p>
       <a class="pill-btn" href="https://play.google.com/store/apps/details?id=gts.dozor_city" target="_blank" rel="noopener">Dozor City (Android) →</a>
       <a class="pill-btn" href="https://apps.apple.com/ua/app/dozor-city/id1375507839?l=uk" target="_blank" rel="noopener">Dozor City (iOS) →</a>
       <a class="pill-btn" href="https://play.google.com/store/apps/details?id=com.eway" target="_blank" rel="noopener">Eway →</a>
     </div>
     <div class="glass card">
       <div class="widget-head"><span>🚆 Поїзди та електрички</span></div>
+      <a class="pill-btn" href="https://play.google.com/store/apps/details?id=com.codeministry.railwayservice" target="_blank" rel="noopener">Розклад приміських (railwayservice) →</a>
       <a class="pill-btn" href="https://play.google.com/store/apps/details?id=ua.gov.uz" target="_blank" rel="noopener">Укрзалізниця UZ →</a>
+      <a class="pill-btn" href="https://play.google.com/store/apps/details?id=com.codeministry.uztrains" target="_blank" rel="noopener">UZ Trains →</a>
+      <a class="pill-btn" href="https://odz.gov.ua/suburban/" target="_blank" rel="noopener">Розклад приміських (odz.gov.ua) →</a>
     </div>
   </section>
+
+  <!-- SERVICES -->
   <section class="screen hidden" id="services" data-title="Сервіси">
     <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
     <h1 class="screen-title">💳 Сервіси</h1>
     <div class="glass card">
-      <div class="widget-head"><span>💸 Оплата навчання</span></div>
+      <div class="widget-head"><span>💸 Оплата навчання / послуг</span></div>
       <a class="pill-btn primary" href="https://next.privat24.ua/payments/form/%7b%22token%22:%2215ce682f-5b95-4a0e-bd52-52d0efacace5%22%7d" target="_blank" rel="noopener">Оплатити через Privat24 →</a>
+      <a class="pill-btn" href="https://chdtu.edu.ua/info/requisites" target="_blank" rel="noopener">Реквізити ЧДТУ →</a>
+    </div>
+    <div class="glass card">
+      <div class="widget-head"><span>📧 Підписки за студентським</span></div>
+      <p>Office 365, Moodle та знижки — доступні за студентською поштою. Переваг море, не вагайтесь!</p>
+      <a class="pill-btn" href="https://chdtu.edu.ua/cikt/e-mail" target="_blank" rel="noopener">Подати заявку на пошту →</a>
     </div>
   </section>
 
-  <!-- CAMPUS 3D -->
+  <!-- CAMPUS MAP -->
   <section class="screen hidden" id="campus" data-title="Кампус">
-    <button class="back-btn" data-open="dashboard" style="position: relative; z-index: 1000; background: var(--glass-bg-strong); padding: 10px 20px; border-radius: 12px; color: white;">← Робочий стіл</button>
-    <div class="glass card iso-card" style="padding: 0; overflow: hidden; height: 75vh; position: relative;">
-      <div id="map" style="width: 100%; height: 100%;"></div>
+    <button class="back-btn" data-open="dashboard">← Робочий стіл</button>
+    <h1 class="screen-title">🗺️ Кампус ЧДТУ</h1>
+    <div class="glass card map-card">
+      <div class="map-toolbar">
+        <span class="widget-head" style="margin:0">📍 Реальна карта корпусів і гуртожитків</span>
+        <button class="fullscreen-btn" id="fullscreenBtn" aria-label="На весь екран">⛶</button>
+      </div>
+      <div id="campusMap" class="campus-map"></div>
+      <p class="hint">Торкніться будівлі в списку нижче, щоб побачити її на карті, або одразу оберіть спосіб, як туди дістатись.</p>
     </div>
+
+    <div class="building-list" id="buildingList"></div>
   </section>
 
 </main>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="app.js"></script>
 </body>
 </html>
